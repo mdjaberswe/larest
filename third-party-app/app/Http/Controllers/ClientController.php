@@ -21,8 +21,8 @@ class ClientController extends Controller
     {
         parent::__construct();
 
-        $this->client_id = '3';
-        $this->client_secret = '4n7f3qHSqMzB2v28JO1KYx2hxgcOWp7Z4rePmq1m';
+        $this->client_id = '4';
+        $this->client_secret = 'ndDt2eZ5dQYWgWLbrmDYLaAEgaYYjdiN9WYhOtMm';
         $this->passport_server = 'http://localhost:8000';
     }
 
@@ -65,10 +65,11 @@ class ClientController extends Controller
         );
 
         $response = Http::asForm()->post($this->passport_server . '/oauth/token', [
-            'grant_type'    => 'client_credentials',
+            'grant_type'    => 'authorization_code',
             'client_id'     => $this->client_id,
             'client_secret' => $this->client_secret,
-            'scope'         => '*',
+            'redirect_uri'  => url('callback'),
+            'code'          => $request->code,
         ]);
 
         return $response->json();

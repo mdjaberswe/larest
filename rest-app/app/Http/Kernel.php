@@ -44,8 +44,9 @@ class Kernel extends HttpKernel
             'http.headers:Build Yourself for Next Stage!',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Logging::class,
-            \App\Http\Middleware\BasicAuth::class,
+            // \App\Http\Middleware\BasicAuth::class,
             // \App\Http\Middleware\HttpHeaders::class,
+            'auth:api',
         ],
     ];
 
